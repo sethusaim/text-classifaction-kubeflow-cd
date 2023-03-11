@@ -1,0 +1,8 @@
+apiVersion: tekton.dev/v1
+kind: Task
+metadata:
+  name: model-evaluation-task
+spec:
+  steps:
+  - name: model-evaluation-task
+    image: 566373416292.dkr.ecr.us-east-1.amazonaws.com/ecom_model_evaluation:1

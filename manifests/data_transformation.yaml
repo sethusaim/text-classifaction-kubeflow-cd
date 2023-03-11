@@ -1,0 +1,8 @@
+apiVersion: tekton.dev/v1
+kind: Task
+metadata:
+  name: data-transformation-task
+spec:
+  steps:
+  - name: data-transformation-task
+    image: 566373416292.dkr.ecr.us-east-1.amazonaws.com/ecom_data_transformation:1

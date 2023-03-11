@@ -1,0 +1,33 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: wafer-train-pipeline
+spec:
+  tasks:
+    - name: data-ingestion
+      taskRef:
+        name: data-ingestion-task
+
+    - name: data-validation
+      taskRef:
+        name: data-validation-task
+      runAfter:
+        - data-ingestion
+
+    - name: data-transformation
+      taskRef:
+        name: data-transformation-task
+      runAfter:
+        - data-validation
+
+    - name: model-training
+      taskRef:
+        name: model-training-task
+      runAfter:
+        - data-transformation
+
+    - name: model-pusher
+      taskRef:
+        name: model-pusher-task
+      runAfter:
+        - model-training
