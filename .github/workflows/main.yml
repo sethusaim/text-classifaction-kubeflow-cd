@@ -1,0 +1,51 @@
+name: Run Continous  Pipeline
+
+on:
+  workflow_dispatch:
+  repository_dispatch:
+    types:
+      - continuous-training
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  integration:
+    name: Continuous Integration
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Lint code
+        run: echo "Linting repository"
+
+      - name: Run unit tests
+        run: echo "Running unit tests"
+
+  training:
+    name: Continuous Training
+    runs-on: ubuntu-latest
+    needs: integration
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Install tekton cli
+        run: |
+          sudo apt update
+
+          sudo apt install -y gnupg
+
+          sudo mkdir -p /etc/apt/keyrings/
+
+          sudo gpg --no-default-keyring --keyring /etc/apt/keyrings/tektoncd.gpg --keyserver keyserver.ubuntu.com --recv-keys 3EFE0E0A2F2F60AA
+
+          echo "deb [signed-by=/etc/apt/keyrings/tektoncd.gpg] http://ppa.launchpad.net/tektoncd/cli/ubuntu eoan main"|sudo tee /etc/apt/sources.list.d/tektoncd-ubuntu-cli.list
+
+          sudo apt update && sudo apt install -y tektoncd-cli
+
+      - name: Run training pipeline
+        run: |
+          tkn pipeline start train-pipeline --service-account ${{ secrets.PIPELINE_SA }} -n ${{ secrets.PIPELINE_NAMESPACE }} -k ${{ secrets.KUBECONFIG }}
