@@ -24,17 +24,6 @@ jobs:
       - name: Run unit tests
         run: echo "Running unit tests"
 
-  delivery:
-    name: Continuous Delivery
-    runs-on: ubuntu-latest
-    needs: integration
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-
-      - name: Build and push kfp components
-        run: make build_components
-
   training:
     name: Continuous Training
     runs-on: ubuntu-latest
