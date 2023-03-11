@@ -1,0 +1,5 @@
+name: Ecom Model Pusher
+implementation:
+  container:
+    image: 566373416292.dkr.ecr.us-east-1.amazonaws.com/ecom_model_pusher:latest
+    command: ["python3", "run.py"]
