@@ -1,1 +1,1 @@
-# text-classifaction-kubeflow-cd
+# text-classifaction-tekton-cd
