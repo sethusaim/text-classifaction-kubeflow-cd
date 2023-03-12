@@ -1,4 +1,4 @@
-name: Run Continous  Pipeline
+name: Run Continous Training Pipeline
 
 on:
   workflow_dispatch:
