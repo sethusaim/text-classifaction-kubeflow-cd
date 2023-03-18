@@ -23,7 +23,7 @@ pipeline {
 
               sh 'git commit -m "Updated ${REPO_NAME} tekton manifest with build number as ${DOCKERTAG}"'
 
-              sh 'git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/${GIT_USERNAME}/Wafer-Fault-Kubernetes-CD.git'
+              sh 'git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/${GIT_USERNAME}/text-classifaction-tekton-cd.git'
             }
           }
         }
