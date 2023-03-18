@@ -26,8 +26,14 @@ spec:
       runAfter:
         - data-transformation
 
+    - name: model-evaluation
+      taskRef:
+        name: model-evaluation-task
+      runAfter:
+        - model-training-task
+
     - name: model-pusher
       taskRef:
         name: model-pusher-task
       runAfter:
-        - model-training
+        - model-evaluation
