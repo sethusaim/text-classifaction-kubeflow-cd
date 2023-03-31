@@ -30,7 +30,7 @@ spec:
       taskRef:
         name: model-evaluation-task
       runAfter:
-        - model-training-task
+        - model-training
 
     - name: model-pusher
       taskRef:
