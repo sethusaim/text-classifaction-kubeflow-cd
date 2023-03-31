@@ -6,3 +6,10 @@ spec:
   steps:
   - name: data-validation-task
     image: 566373416292.dkr.ecr.us-east-1.amazonaws.com/ecom_data_validation:1
+    computeResources:
+        limits:
+          cpu: 800m
+          memory: 2Gi
+        requests:
+          cpu: 500m
+          memory: 1Gi

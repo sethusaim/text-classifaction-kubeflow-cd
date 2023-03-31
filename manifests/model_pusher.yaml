@@ -4,5 +4,12 @@ metadata:
   name: model-pusher-task
 spec:
   steps:
-  - name: model-pusher-task
-    image: 566373416292.dkr.ecr.us-east-1.amazonaws.com/ecom_model_pusher:1
+    - name: model-pusher-task
+      image: 566373416292.dkr.ecr.us-east-1.amazonaws.com/ecom_model_pusher:1
+      computeResources:
+        limits:
+          cpu: 800m
+          memory: 2Gi
+        requests:
+          cpu: 500m
+          memory: 1Gi

@@ -4,5 +4,12 @@ metadata:
   name: data-ingestion-task
 spec:
   steps:
-  - name: data-ingestion-task
-    image: 566373416292.dkr.ecr.us-east-1.amazonaws.com/ecom_data_ingestion:1
+    - name: data-ingestion-task
+      image: 566373416292.dkr.ecr.us-east-1.amazonaws.com/ecom_data_ingestion:1
+      computeResources:
+        limits:
+          cpu: 800m
+          memory: 2Gi
+        requests:
+          cpu: 500m
+          memory: 1Gi

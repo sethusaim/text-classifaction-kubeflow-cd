@@ -4,5 +4,12 @@ metadata:
   name: model-training-task
 spec:
   steps:
-  - name: model-training-task
-    image: 566373416292.dkr.ecr.us-east-1.amazonaws.com/ecom_model_training:1
+    - name: model-training-task
+      image: 566373416292.dkr.ecr.us-east-1.amazonaws.com/ecom_model_training:1
+      computeResources:
+        limits:
+          cpu: 800m
+          memory: 2Gi
+        requests:
+          cpu: 500m
+          memory: 1Gi
