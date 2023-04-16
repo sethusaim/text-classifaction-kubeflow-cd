@@ -1,0 +1,27 @@
+apiVersion: triggers.tekton.dev/v1beta1
+kind: TriggerTemplate
+metadata:
+  name: trigger-pipeline-template
+spec:
+  resourcetemplates:
+    - apiVersion: tekton.dev/v1beta1
+      kind: PipelineRun
+      metadata:
+        generateName: simple-pipeline-run-
+      spec:
+        pipelineRef:
+          name: train-pipeline
+        taskRunSpecs:
+          - pipelineTaskName: model-training-task
+            taskServiceAccountName: model-training-sa
+            taskPodTemplate:
+              affinity:
+                nodeAffinity:
+                  requiredDuringSchedulingIgnoredDuringExecution:
+                    nodeSelectorTerms:
+                      - matchExpressions:
+                          - key: topology.kubernetes.io/zone
+                            operator: In
+                            values:
+                              - us-east-1a
+                              - us-east-1b
