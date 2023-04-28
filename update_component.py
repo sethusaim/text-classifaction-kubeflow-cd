@@ -4,7 +4,7 @@ import yaml
 
 new_tag = os.environ["DOCKERTAG"]
 
-file_name = os.path.join("manifests", os.environ["COMP_FILE"])
+file_name = os.path.join("manifests", "components", os.environ["COMP_FILE"])
 
 
 def update_yaml():
